@@ -6,6 +6,9 @@ metadata:
     app: loadgen
 spec:
   containers:
-  - image: ghcr.io/kidk/kubernetes-demo-apps-loadgen:latest
+  - image: sjunell1643407/loadgen:latest
     name: loadgen
+    env:
+    - name: HOSTPORT
+      value: "3000"
   restartPolicy: Always

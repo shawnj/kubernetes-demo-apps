@@ -1,0 +1,66 @@
+bases:
+  - yaml/frontend.yaml
+  - yaml/parser.yaml
+  - yaml/worker.yaml
+  - yaml/loadgen.yaml
+  - yaml/rabbitmq.yaml
+  - yaml/redis.yaml
+  - yaml/gateway.yaml
+
+#nameSuffix: "-rev.002"
+
+patches:
+  - target:
+      kind: Deployment
+      name: frontend
+      version: v1
+      group: apps
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/1/value
+        value: "frontend-rev.002"
+  - target:
+      kind: Deployment
+      name: frontend
+      version: v1
+      group: apps
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: "frontend-rev.002"
+  - target:
+      kind: Deployment
+      name: worker
+      version: v1
+      group: apps
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/1/value
+        value: "worker-rev.002"
+  - target:
+      kind: Deployment
+      name: worker
+      version: v1
+      group: apps
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: "worker-rev.002"
+  - target:
+      kind: Deployment
+      name: parser
+      version: v1
+      group: apps
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/1/value
+        value: "parser-rev.002"
+  - target:
+      kind: Deployment
+      name: parser
+      version: v1
+      group: apps
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: "parser-rev.002"
